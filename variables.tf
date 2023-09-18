@@ -91,3 +91,9 @@ variable "enable_azure_blob_publisher" {
   default     = false
   description = "Flag to enable write the queries result into Azure Blob Container"
 }
+
+variable "azure_table_name" {
+  type        = string
+  default     = "AzureSubscriptionMetadata"
+  description = "Table name for fetching the PU and techcontact data to enrich the output"
+}
