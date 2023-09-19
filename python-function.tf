@@ -43,7 +43,7 @@ EOT
 
 resource "time_sleep" "wait_for_app" {
   depends_on = [
-    azurerm_function_app.function_app
+    azurerm_linux_function_app.function_app
   ]
 
   create_duration = "30s"
@@ -56,7 +56,7 @@ resource "null_resource" "deploy_function" {
 
   triggers = {
     code   = data.archive_file.function_data.output_sha
-    config = sha1(jsonencode(azurerm_function_app.function_app.app_settings))
+    config = sha1(jsonencode(azurerm_linux_function_app.function_app.app_settings))
   }
   provisioner "local-exec" {
     command = <<EXEC
@@ -65,7 +65,7 @@ resource "null_resource" "deploy_function" {
       --function-dir resource-graph-collector \
       --subscription ${data.azurerm_subscription.current.display_name} \
       --resource-group ${azurerm_resource_group.rg.name} \
-      --app-name ${azurerm_function_app.function_app.name}
+      --app-name ${azurerm_linux_function_app.function_app.name}
 EXEC
   }
 }

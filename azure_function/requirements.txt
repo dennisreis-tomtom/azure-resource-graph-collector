@@ -11,3 +11,6 @@ python-logging-loki==0.3.1
 toolz==0.11.2
 azure-storage-blob==12.16.0
 azure-data-tables==12.4.3
+certifi==2021.5.30
+cffi==1.15.1
+python-logging-loki==0.3.1

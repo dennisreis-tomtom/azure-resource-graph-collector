@@ -1,5 +1,6 @@
 import logging
 import os
+import cffi
 
 import azure.functions as func
 import azure.mgmt.resourcegraph as graph
