@@ -68,8 +68,17 @@ def main(event: func.TimerRequest) -> None:
             filter = f"RowKey eq '{row_key}'"
             azure_table = AzureTable()
             azure_table_entities = azure_table.query_entities(filter)
-            pu = azure_table_entities[0]["PU"]
-            techcontact = azure_table_entities[0]["techContact"]
+
+            try:
+                pu = azure_table_entities[0]["PU"]
+            except IndexError:
+                pu = "unknown"
+
+            try:
+                techcontact = azure_table_entities[0]["techContact"]
+            except IndexError:
+                techcontact = "unknown"
+
             item["pu"] = pu
             item["techcontact"] = techcontact
 
